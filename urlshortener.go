@@ -10,13 +10,13 @@ import (
 )
 
 func ShortenURL(longUrl string) (shortenUrl string, err os.Error) {
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
+	var encbuf bytes.Buffer
+	enc := json.NewEncoder(&encbuf)
 	err = enc.Encode(map[string]string{"longUrl": longUrl})
 	if err != nil {
 		return
 	}
-	res, err := http.Post("https://www.googleapis.com/urlshortener/v1/url", "application/json", strings.NewReader(buf.String()))
+	res, err := http.Post("https://www.googleapis.com/urlshortener/v1/url", "application/json", strings.NewReader(encbuf.String()))
 	if err != nil {
 		return
 	}
@@ -28,7 +28,15 @@ func ShortenURL(longUrl string) (shortenUrl string, err os.Error) {
 	if err != nil {
 		return
 	}
-	shortenUrl = string(b)
+	var decbuf bytes.Buffer
+	decbuf.Write(b)
+	dec := json.NewDecoder(&decbuf)
+	var out map[string]interface{}
+	err = dec.Decode(&out)
+	if err != nil {
+		return
+	}
+	shortenUrl = out["id"].(string)
 	return
 }
 
@@ -46,9 +54,9 @@ func ExpandURL(shortUrl string) (expandedUrl string, err os.Error) {
 	if err != nil {
 		return
 	}
-	var buf bytes.Buffer
-	buf.Write(b)
-	dec := json.NewDecoder(&buf)
+	var decbuf bytes.Buffer
+	decbuf.Write(b)
+	dec := json.NewDecoder(&decbuf)
 	var out map[string]interface{}
 	err = dec.Decode(&out)
 	if err != nil {
