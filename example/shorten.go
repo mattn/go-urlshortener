@@ -5,7 +5,7 @@ import "flag"
 import "fmt"
 import "os"
 
-var shorten = flag.Bool("e", false, "shorten URL")
+var expand = flag.Bool("e", false, "expand URL")
 
 func main() {
 	flag.Usage = func() {
@@ -20,10 +20,10 @@ func main() {
 
 	var u string
 	var e os.Error
-	if *shorten {
-		u, e = urlshorter.ShortenURL(args[0])
-	} else {
+	if *expand {
 		u, e = urlshorter.ExpandURL(args[0])
+	} else {
+		u, e = urlshorter.ShortenURL(args[0])
 	}
 	if e != nil {
 		panic(e.String())
