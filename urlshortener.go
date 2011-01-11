@@ -97,7 +97,8 @@ type AnalyticsInfo struct {
 
 func AnalyticsURL(shortUrl string) (info AnalyticsInfo, err os.Error) {
 	param := http.EncodeQuery(map[string][]string{"shortUrl": {shortUrl}, "projection": {"FULL"}})
-	res, _, err := http.Get("https://www.googleapis.com/urlshortener/v1/url?" + param)
+	var res *http.Response
+	res, _, err = http.Get("https://www.googleapis.com/urlshortener/v1/url?" + param)
 	if err != nil {
 		return
 	}
