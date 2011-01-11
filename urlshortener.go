@@ -59,32 +59,32 @@ func ExpandURL(shortUrl string) (expandedUrl string, err os.Error) {
 }
 
 type AnalyticsCount struct {
-    Count string
-    Id string
+	Count string
+	Id    string
 }
 
 type AnalyticsItem struct {
 	ShortUrlClicks string
-	LongUrlClicks string
-	Referrers []AnalyticsCount
-	Countries []AnalyticsCount
-	Browsers []AnalyticsCount
-	Platforms []AnalyticsCount
+	LongUrlClicks  string
+	Referrers      []AnalyticsCount
+	Countries      []AnalyticsCount
+	Browsers       []AnalyticsCount
+	Platforms      []AnalyticsCount
 }
 
 type AnalyticsInfo struct {
- Kind string
- Id string
- LongUrl string
- Status string
- Created string
- Analytics struct {
-  AllTime AnalyticsItem
-  Month AnalyticsItem
-  Week AnalyticsItem
-  Day AnalyticsItem
-  TwoHours AnalyticsItem
- }
+	Kind      string
+	Id        string
+	LongUrl   string
+	Status    string
+	Created   string
+	Analytics struct {
+		AllTime  AnalyticsItem
+		Month    AnalyticsItem
+		Week     AnalyticsItem
+		Day      AnalyticsItem
+		TwoHours AnalyticsItem
+	}
 }
 
 func AnalyticsURL(shortUrl string) (info AnalyticsInfo, err os.Error) {

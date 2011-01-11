@@ -29,7 +29,8 @@ AllTime:
   Platforms:
     {.repeated section Platforms}{@}{.end}
 {.end}
-`, nil)
+`,
+			nil)
 		tmpl.Execute(a, &b)
 		println("", b.String())
 	}
