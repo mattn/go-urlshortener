@@ -1,4 +1,4 @@
-package urlshorter
+package urlshortener
 
 import (
 	"bytes"
