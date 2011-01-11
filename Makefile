@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG     = google/urlshorter
-GOFILES = urlshorter.go
+TARG     = google/urlshortener
+GOFILES = urlshortener.go
 
 include $(GOROOT)/src/Make.pkg

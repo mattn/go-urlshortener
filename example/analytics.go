@@ -1,6 +1,6 @@
 package main
 
-import "google/urlshorter"
+import "google/urlshortener"
 import "bytes"
 import "template"
 
